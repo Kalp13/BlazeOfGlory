@@ -1,0 +1,86 @@
+﻿@page "/showtransactions"
+@rendermode InteractiveWebAssembly
+@inject NavigationManager Navigation
+
+
+<PageTitle>Transactions History</PageTitle>
+
+<!-- Control Bar -->
+<div class="d-flex justify-content-end align-items-center" style="height:35px; background:transparent; margin-right:5px;">
+    <button class="btn btn-light btn-sm mx-1" @onclick="Close"><i class="fa fa-times"></i></button>
+    <button class="btn btn-light btn-sm mx-1" @onclick="Maximize"><i class="fa fa-window-maximize"></i></button>
+    <button class="btn btn-light btn-sm mx-1" @onclick="Minimize"><i class="fa fa-window-minimize"></i></button>
+</div>
+
+<!-- Header / Caption -->
+<div style="height:45px; display:flex; align-items:center; background: #343a40;">
+    <span style="font-size:25px; color:#fff; margin-left:10px;">Transactions History</span>
+</div>
+
+<!-- Content Section -->
+<div class="m-3">
+    <div style="overflow-x:auto;">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Bill Id</th>
+                    <th>Date</th>
+                    <th>Grand Total</th>
+                    <th>Discount</th>
+                    <th>Sub Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var bill in BillsList)
+                {
+                    <tr>
+                        <td>@bill.BillId</td>
+                        <td>@bill.BillDate.ToString("yyyy-MM-dd")</td>
+                        <td>@bill.GrandTotal</td>
+                        <td>@bill.Discount</td>
+                        <td>@bill.SubTotal</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" @onclick="() => NavigateToDetailedBill(bill.BillId)">View Detailed Bill</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    // Sample data model
+    public class Bill
+    {
+        public int BillId { get; set; }
+        public DateTime BillDate { get; set; }
+        public decimal GrandTotal { get; set; }
+        public decimal Discount { get; set; }
+        public decimal SubTotal { get; set; }
+    }
+
+    // Sample data source
+    private List<Bill> BillsList = new()
+    {
+        new Bill { BillId = 1, BillDate = DateTime.Now, GrandTotal = 100, Discount = 10, SubTotal = 90 },
+        new Bill { BillId = 2, BillDate = DateTime.Now.AddDays(-1), GrandTotal = 200, Discount = 20, SubTotal = 180 }
+    };
+
+    // Control bar actions (implement as needed)
+    private void Close() { /* Add close logic */ }
+    private void Maximize() { /* Add maximize logic */ }
+    private void Minimize() { /* Add minimize logic */ }
+
+    // Show detailed bill
+    private void ShowItemList(Bill bill)
+    {
+        // Implement logic to show detailed bill
+    }
+    private void NavigateToDetailedBill(int billId)
+    {
+        Navigation.NavigateTo($"/detailedbill/{billId}");
+    }
+
+}

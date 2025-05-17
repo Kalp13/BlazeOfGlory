@@ -1,11 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFToBlazor", "WPFToBlazor\WPFToBlazor\WPFToBlazor.csproj", "{50335E94-63C5-4238-9291-DF12F7BB3C40}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFToBlazor.Client", "WPFToBlazor\WPFToBlazor.Client\WPFToBlazor.Client.csproj", "{44CC438E-2219-47F5-A87F-67503172CCBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFToBlazor.AppHost", "WPFToBlazor.AppHost\WPFToBlazor.AppHost.csproj", "{86917886-6625-49AD-9785-AD0DE9551903}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFToBlazor.ServiceDefaults", "WPFToBlazor.ServiceDefaults\WPFToBlazor.ServiceDefaults.csproj", "{F27BCC7C-F3CD-5D41-D92D-ED8B9EF4DC3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFToBlazor.Data", "WPFToBlazor.Data\WPFToBlazor.Data.csproj", "{0F4C1A9E-4532-4100-AD74-068927F20102}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFToBlazor.Api", "WPFToBlazor.Api\WPFToBlazor.Api.csproj", "{7967D080-5B39-055C-0C5E-DE4492E3B3E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,22 @@ Global
 		{44CC438E-2219-47F5-A87F-67503172CCBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44CC438E-2219-47F5-A87F-67503172CCBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44CC438E-2219-47F5-A87F-67503172CCBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86917886-6625-49AD-9785-AD0DE9551903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86917886-6625-49AD-9785-AD0DE9551903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86917886-6625-49AD-9785-AD0DE9551903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86917886-6625-49AD-9785-AD0DE9551903}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F27BCC7C-F3CD-5D41-D92D-ED8B9EF4DC3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F27BCC7C-F3CD-5D41-D92D-ED8B9EF4DC3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F27BCC7C-F3CD-5D41-D92D-ED8B9EF4DC3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F27BCC7C-F3CD-5D41-D92D-ED8B9EF4DC3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F4C1A9E-4532-4100-AD74-068927F20102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F4C1A9E-4532-4100-AD74-068927F20102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F4C1A9E-4532-4100-AD74-068927F20102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F4C1A9E-4532-4100-AD74-068927F20102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7967D080-5B39-055C-0C5E-DE4492E3B3E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7967D080-5B39-055C-0C5E-DE4492E3B3E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7967D080-5B39-055C-0C5E-DE4492E3B3E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7967D080-5B39-055C-0C5E-DE4492E3B3E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
