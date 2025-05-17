@@ -1,6 +1,6 @@
 ﻿@page "/login"
 @rendermode InteractiveWebAssembly
-
+@inject HttpClient Http
 @using System.ComponentModel.DataAnnotations
 
 <PageTitle>Login</PageTitle>
@@ -50,10 +50,26 @@
 @code {
     private LoginModel loginModel = new();
 
-    private void HandleLogin()
+    private async void HandleLogin()
     {
         // TODO: Implement your login logic here
         // For now, just a placeholder
+
+        var response = await Http.PostAsJsonAsync("api/auth/login", loginModel);
+        if (response.IsSuccessStatusCode)
+        {
+            // Handle successful login (e.g., redirect, show message)
+        }
+        else
+        {
+            // Handle error (e.g., show error message)
+        }
+
+        using(HttpClient client = new HttpClient())
+        {
+            
+        }
+
     }
 
     public class LoginModel

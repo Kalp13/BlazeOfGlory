@@ -13,6 +13,7 @@
         public string ItemName { get; set; } = "";
         public decimal ItemPrice { get; set; }
         public string? ItemPhoto { get; set; }
+        public string Category { get; set; } = "";
     }
 
     // Sample data
@@ -20,22 +21,41 @@
     {
         new Category { Name = "Biscuits" },
         new Category { Name = "Soft Drinks" },
-        new Category { Name = "abc" }
+        new Category { Name = "Chocolates" },
+        new Category { Name = "Chips" },
+        new Category { Name = "Juices" }
     };
 
     private List<Product> Products = new()
     {
-        new Product { ItemName = "Burger", ItemPrice = 500, ItemPhoto = "img/food.png" },
-        new Product { ItemName = "Pizza", ItemPrice = 800, ItemPhoto = "img/food.png" }
+        new Product { ItemName = "Oreo", ItemPrice = 25, ItemPhoto = null, Category = "Biscuits" },
+        new Product { ItemName = "Marie Gold", ItemPrice = 20, ItemPhoto = null, Category = "Biscuits" },
+        new Product { ItemName = "Coca Cola", ItemPrice = 35, ItemPhoto = null, Category = "Soft Drinks" },
+        new Product { ItemName = "Pepsi", ItemPrice = 30, ItemPhoto = null, Category = "Soft Drinks" },
+        new Product { ItemName = "Dairy Milk", ItemPrice = 50, ItemPhoto = null, Category = "Chocolates" },
+        new Product { ItemName = "KitKat", ItemPrice = 45, ItemPhoto = null, Category = "Chocolates" },
+        new Product { ItemName = "Lays Classic", ItemPrice = 15, ItemPhoto = null, Category = "Chips" },
+        new Product { ItemName = "Doritos", ItemPrice = 40, ItemPhoto = null, Category = "Chips" },
+        new Product { ItemName = "Orange Juice", ItemPrice = 60, ItemPhoto = null, Category = "Juices" },
+        new Product { ItemName = "Apple Juice", ItemPrice = 65, ItemPhoto = null, Category = "Juices" }
     };
 
     private string? selectedCategory;
     private Product? selectedProduct;
 
+    private IEnumerable<Product> FilteredProducts =>
+        string.IsNullOrEmpty(selectedCategory)
+            ? Products
+            : Products.Where(p => p.Category == selectedCategory);
+
     private void OnCategoryClick(Category cat)
     {
         selectedCategory = cat.Name;
-        // TODO: Filter products by category
+    }
+
+    private void OnProductClick(Product prod)
+    {
+        selectedProduct = prod;
     }
 
     private void OnProductClick(Product prod)
