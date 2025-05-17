@@ -3,16 +3,36 @@
   "WorkspaceRootPath": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0F4C1A9E-4532-4100-AD74-068927F20102}|WPFToBlazor.Data\\WPFToBlazor.Data.csproj|c:\\vsts\\blazeofglory\\blazeofglory\\wpftoblazor\\wpftoblazor.data\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F4C1A9E-4532-4100-AD74-068927F20102}|WPFToBlazor.Data\\WPFToBlazor.Data.csproj|solutionrelative:wpftoblazor.data\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7967D080-5B39-055C-0C5E-DE4492E3B3E4}|WPFToBlazor.Api\\WPFToBlazor.Api.csproj|c:\\vsts\\blazeofglory\\blazeofglory\\wpftoblazor\\wpftoblazor.api\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7967D080-5B39-055C-0C5E-DE4492E3B3E4}|WPFToBlazor.Api\\WPFToBlazor.Api.csproj|solutionrelative:wpftoblazor.api\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44CC438E-2219-47F5-A87F-67503172CCBE}|WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj|c:\\vsts\\blazeofglory\\blazeofglory\\wpftoblazor\\wpftoblazor\\wpftoblazor.client\\pages\\managecashiers.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{44CC438E-2219-47F5-A87F-67503172CCBE}|WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj|solutionrelative:wpftoblazor\\wpftoblazor.client\\pages\\managecashiers.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50335E94-63C5-4238-9291-DF12F7BB3C40}|WPFToBlazor\\WPFToBlazor\\WPFToBlazor.csproj|c:\\vsts\\blazeofglory\\blazeofglory\\wpftoblazor\\wpftoblazor\\wpftoblazor\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{50335E94-63C5-4238-9291-DF12F7BB3C40}|WPFToBlazor\\WPFToBlazor\\WPFToBlazor.csproj|solutionrelative:wpftoblazor\\wpftoblazor\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44CC438E-2219-47F5-A87F-67503172CCBE}|WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj|c:\\vsts\\blazeofglory\\blazeofglory\\wpftoblazor\\wpftoblazor\\wpftoblazor.client\\wpftoblazor.client.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{44CC438E-2219-47F5-A87F-67503172CCBE}|WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj|solutionrelative:wpftoblazor\\wpftoblazor.client\\wpftoblazor.client.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{881B9A73-1198-4E82-BD90-96CF7FA2F639}|WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj|c:\\vsts\\blazeofglory\\blazeofglory\\wpftoblazor\\wpftoblazor.apiclient\\wpftoblazor.apiclient.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{881B9A73-1198-4E82-BD90-96CF7FA2F639}|WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj|solutionrelative:wpftoblazor.apiclient\\wpftoblazor.apiclient.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{881B9A73-1198-4E82-BD90-96CF7FA2F639}|WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj|c:\\vsts\\blazeofglory\\blazeofglory\\wpftoblazor\\wpftoblazor.apiclient\\apiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{881B9A73-1198-4E82-BD90-96CF7FA2F639}|WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj|solutionrelative:wpftoblazor.apiclient\\apiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{881B9A73-1198-4E82-BD90-96CF7FA2F639}|WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj|c:\\vsts\\blazeofglory\\blazeofglory\\wpftoblazor\\wpftoblazor.apiclient\\models\\userapimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{881B9A73-1198-4E82-BD90-96CF7FA2F639}|WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj|solutionrelative:wpftoblazor.apiclient\\models\\userapimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0F4C1A9E-4532-4100-AD74-068927F20102}|WPFToBlazor.Data\\WPFToBlazor.Data.csproj|c:\\vsts\\blazeofglory\\blazeofglory\\wpftoblazor\\wpftoblazor.data\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0F4C1A9E-4532-4100-AD74-068927F20102}|WPFToBlazor.Data\\WPFToBlazor.Data.csproj|solutionrelative:wpftoblazor.data\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{881B9A73-1198-4E82-BD90-96CF7FA2F639}|WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj|c:\\vsts\\blazeofglory\\blazeofglory\\wpftoblazor\\wpftoblazor.apiclient\\models\\billapimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -81,11 +101,74 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 21,
+          "SelectedChildIndex": 27,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AuthenticationController.cs",
+              "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.Api\\Controllers\\AuthenticationController.cs",
+              "RelativeDocumentMoniker": "WPFToBlazor.Api\\Controllers\\AuthenticationController.cs",
+              "ToolTip": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.Api\\Controllers\\AuthenticationController.cs",
+              "RelativeToolTip": "WPFToBlazor.Api\\Controllers\\AuthenticationController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABwAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-17T08:43:44.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "WPFToBlazor\\WPFToBlazor\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "WPFToBlazor\\WPFToBlazor\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-17T08:40:25.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ManageCashiers.razor",
+              "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor.Client\\Pages\\ManageCashiers.razor",
+              "RelativeDocumentMoniker": "WPFToBlazor\\WPFToBlazor.Client\\Pages\\ManageCashiers.razor",
+              "ToolTip": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor.Client\\Pages\\ManageCashiers.razor",
+              "RelativeToolTip": "WPFToBlazor\\WPFToBlazor.Client\\Pages\\ManageCashiers.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-17T08:33:35.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WPFToBlazor.Client",
+              "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj",
+              "RelativeDocumentMoniker": "WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj",
+              "ToolTip": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj",
+              "RelativeToolTip": "WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-17T08:33:21.695Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WPFToBlazor.ApiClient",
+              "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj",
+              "RelativeDocumentMoniker": "WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj",
+              "ToolTip": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj",
+              "RelativeToolTip": "WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-17T08:33:14.468Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "UserApiModel.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\Models\\UserApiModel.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.ApiClient\\Models\\UserApiModel.cs",
@@ -98,7 +181,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "TransactionApiModel.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\Models\\TransactionApiModel.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.ApiClient\\Models\\TransactionApiModel.cs",
@@ -111,7 +194,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "CategoryApiModel.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\Models\\CategoryApiModel.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.ApiClient\\Models\\CategoryApiModel.cs",
@@ -184,7 +267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "ItemApiModel.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\Models\\ItemApiModel.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.ApiClient\\Models\\ItemApiModel.cs",
@@ -197,7 +280,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "BillRowItemApiModel.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\Models\\BillRowItemApiModel.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.ApiClient\\Models\\BillRowItemApiModel.cs",
@@ -210,7 +293,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "BillApiModel.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\Models\\BillApiModel.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.ApiClient\\Models\\BillApiModel.cs",
@@ -223,7 +306,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "ApiClient.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\ApiClient.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.ApiClient\\ApiClient.cs",
@@ -236,20 +319,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.Data\\Model\\User.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.Data\\Model\\User.cs",
               "ToolTip": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.Data\\Model\\User.cs",
               "RelativeToolTip": "WPFToBlazor.Data\\Model\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-17T07:48:30.259Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "Transaction.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.Data\\Model\\Transaction.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.Data\\Model\\Transaction.cs",
@@ -262,7 +345,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "Item.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.Data\\Model\\Item.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.Data\\Model\\Item.cs",
@@ -275,7 +358,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "Category.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.Data\\Model\\Category.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.Data\\Model\\Category.cs",
@@ -288,7 +371,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "BillRowItem.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.Data\\Model\\BillRowItem.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.Data\\Model\\BillRowItem.cs",
@@ -301,7 +384,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "BillDataModel.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.Data\\Model\\BillDataModel.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.Data\\Model\\BillDataModel.cs",
@@ -314,7 +397,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 19,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.AppHost\\Program.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.AppHost\\Program.cs",
@@ -327,7 +410,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "Microsoft.Common.CurrentVersion.targets",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
@@ -340,7 +423,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "Bill.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.Data\\Model\\Bill.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.Data\\Model\\Bill.cs",
@@ -353,7 +436,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "Class1.cs",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.Data\\Model\\Class1.cs",
               "RelativeDocumentMoniker": "WPFToBlazor.Data\\Model\\Class1.cs",
@@ -366,7 +449,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 22,
               "Title": "dotnet-tools.json",
               "DocumentMoniker": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.WebApi\\.config\\dotnet-tools.json",
               "RelativeDocumentMoniker": "WPFToBlazor.WebApi\\.config\\dotnet-tools.json",
