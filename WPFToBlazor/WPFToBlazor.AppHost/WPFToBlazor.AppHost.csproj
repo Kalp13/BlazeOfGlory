@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WPFToBlazor.WebApi\WPFToBlazor.WebApi.csproj" />
+    <ProjectReference Include="..\WPFToBlazor.Api\WPFToBlazor.Api.csproj" />
     <ProjectReference Include="..\WPFToBlazor\WPFToBlazor\WPFToBlazor.csproj" />
   </ItemGroup>
 
