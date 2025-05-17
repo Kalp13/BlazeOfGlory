@@ -1,3 +1,5 @@
+using WPFToBlazor.ApiClient;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -9,6 +11,8 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer();
 builder.AddServiceDefaults();
 
 // Add services to the container.
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<IApiClient, ApiClient>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

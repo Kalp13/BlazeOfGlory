@@ -73,6 +73,8 @@
     }
 
     private void DeleteItem() { /* TODO: Delete logic */ }
+
+    private bool CanEdit => selectedProduct is not null;
 }
 
 <div class="container-fluid py-3">
@@ -133,10 +135,6 @@
         </div>
     </div>
 </div>
-
-@code {
-    private bool CanEdit => selectedProduct is not null;
-}
 
 <style>
     .btn-purple {
