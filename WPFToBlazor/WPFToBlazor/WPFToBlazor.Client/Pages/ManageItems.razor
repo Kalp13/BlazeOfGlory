@@ -1,59 +1,48 @@
 ﻿@page "/manageitems"
 @rendermode InteractiveWebAssembly
 @inject NavigationManager Navigation
+@using ApiClient.Models
+@inject HttpClient Http
+@inject ApiClient.IApiClient ApiClient
 
 @code {
-    // Sample data models
-    public class Category
-    {
-        public string Name { get; set; } = "";
-    }
-    public class Product
-    {
-        public string ItemName { get; set; } = "";
-        public decimal ItemPrice { get; set; }
-        public string? ItemPhoto { get; set; }
-        public string Category { get; set; } = "";
-    }
-
-    // Sample data
-    private List<Category> Categories = new()
-    {
-        new Category { Name = "Biscuits" },
-        new Category { Name = "Soft Drinks" },
-        new Category { Name = "Chocolates" },
-        new Category { Name = "Chips" },
-        new Category { Name = "Juices" }
-    };
-
-    private List<Product> Products = new()
-    {
-        new Product { ItemName = "Oreo", ItemPrice = 25, ItemPhoto = null, Category = "Biscuits" },
-        new Product { ItemName = "Marie Gold", ItemPrice = 20, ItemPhoto = null, Category = "Biscuits" },
-        new Product { ItemName = "Coca Cola", ItemPrice = 35, ItemPhoto = null, Category = "Soft Drinks" },
-        new Product { ItemName = "Pepsi", ItemPrice = 30, ItemPhoto = null, Category = "Soft Drinks" },
-        new Product { ItemName = "Dairy Milk", ItemPrice = 50, ItemPhoto = null, Category = "Chocolates" },
-        new Product { ItemName = "KitKat", ItemPrice = 45, ItemPhoto = null, Category = "Chocolates" },
-        new Product { ItemName = "Lays Classic", ItemPrice = 15, ItemPhoto = null, Category = "Chips" },
-        new Product { ItemName = "Doritos", ItemPrice = 40, ItemPhoto = null, Category = "Chips" },
-        new Product { ItemName = "Orange Juice", ItemPrice = 60, ItemPhoto = null, Category = "Juices" },
-        new Product { ItemName = "Apple Juice", ItemPrice = 65, ItemPhoto = null, Category = "Juices" }
-    };
-
+    private List<CategoryApiModel> Categories = new();
+    private List<ItemApiModel> Products = new();
     private string? selectedCategory;
-    private Product? selectedProduct;
+    private ItemApiModel? selectedProduct;
+    private bool isLoading = true;
+    private string? errorMessage;
 
-    private IEnumerable<Product> FilteredProducts =>
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            isLoading = true;
+            Categories = await ApiClient.GetAllCategoriesAsync() ?? new();
+            Products = await ApiClient.GetAllItemsAsync() ?? new();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "Failed to load data: " + ex.Message;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private IEnumerable<ItemApiModel> FilteredProducts =>
         string.IsNullOrEmpty(selectedCategory)
             ? Products
             : Products.Where(p => p.Category == selectedCategory);
 
-    private void OnCategoryClick(Category cat)
+    private void OnCategoryClick(CategoryApiModel cat)
     {
         selectedCategory = cat.Name;
+        selectedProduct = null;
     }
 
-    private void OnProductClick(Product prod)
+    private void OnProductClick(ItemApiModel prod)
     {
         selectedProduct = prod;
     }
@@ -67,73 +56,99 @@
     {
         if (selectedProduct is not null)
         {
-            // Pass product name as a query string (or use an ID if available)
-            Navigation.NavigateTo($"/addedititem?name={Uri.EscapeDataString(selectedProduct.ItemName)}");
+            Navigation.NavigateTo($"/addedititem?id={selectedProduct.ItemId}");
         }
     }
 
-    private void DeleteItem() { /* TODO: Delete logic */ }
+    private async Task DeleteItem()
+    {
+        if (selectedProduct is not null)
+        {
+            try
+            {
+                await ApiClient.DeleteItemAsync(selectedProduct.ItemId);
+                Products.Remove(selectedProduct);
+                selectedProduct = null;
+            }
+            catch (Exception ex)
+            {
+                errorMessage = "Failed to delete item: " + ex.Message;
+            }
+        }
+    }
 
     private bool CanEdit => selectedProduct is not null;
 }
 
 <div class="container-fluid py-3">
-    <!-- Control Bar -->
-    <div class="d-flex justify-content-end mb-2">
-        <button class="btn btn-light btn-sm mx-1" title="Close"><i class="fa fa-times"></i></button>
-        <button class="btn btn-light btn-sm mx-1" title="Maximize"><i class="fa fa-window-maximize"></i></button>
-        <button class="btn btn-light btn-sm mx-1" title="Minimize"><i class="fa fa-window-minimize"></i></button>
-    </div>
-
-    <!-- Header -->
-    <div class="row mb-3">
-        <div class="col-3">
-            <div class="bg-dark text-white rounded p-2 text-center fw-bold" style="font-size: 1.3rem;">Categories</div>
+    @if (isLoading)
+    {
+        <div>Loading...</div>
+    }
+    else if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">@errorMessage</div>
+    }
+    else
+    {
+        <!-- Control Bar -->
+        <div class="d-flex justify-content-end mb-2">
+            <button class="btn btn-light btn-sm mx-1" title="Close"><i class="fa fa-times"></i></button>
+            <button class="btn btn-light btn-sm mx-1" title="Maximize"><i class="fa fa-window-maximize"></i></button>
+            <button class="btn btn-light btn-sm mx-1" title="Minimize"><i class="fa fa-window-minimize"></i></button>
         </div>
-        <div class="col">
-            <div class="bg-dark text-white rounded p-2 text-center fw-bold" style="font-size: 1.3rem;">Product List</div>
-        </div>
-    </div>
 
-    <!-- Content -->
-    <div class="row" style="min-height: 500px;">
-        <!-- Categories -->
-        <div class="col-3">
-            <div class="bg-light rounded p-3 mb-3" style="min-height: 300px;">
-                @foreach (var cat in Categories)
-                {
-                    <button class="btn btn-primary w-100 mb-2" @onclick="() => OnCategoryClick(cat)">
-                        @cat.Name
-                    </button>
-                }
+        <!-- Header -->
+        <div class="row mb-3">
+            <div class="col-3">
+                <div class="bg-dark text-white rounded p-2 text-center fw-bold" style="font-size: 1.3rem;">Categories</div>
             </div>
-            <div class="d-grid gap-2">
-                <button class="btn btn-purple" @onclick="AddItem">Add</button>
-                <button class="btn btn-purple" @onclick="EditItem" disabled="@(!CanEdit)">Edit</button>
-                <button class="btn btn-purple" @onclick="DeleteItem">Delete</button>
+            <div class="col">
+                <div class="bg-dark text-white rounded p-2 text-center fw-bold" style="font-size: 1.3rem;">Product List</div>
             </div>
         </div>
 
-        <!-- Products -->
-        <div class="col">
-            <div class="bg-light rounded p-3" style="min-height: 300px;">
-                <div class="d-flex flex-wrap">
-                    @foreach (var prod in Products)
+        <!-- Content -->
+        <div class="row" style="min-height: 500px;">
+            <!-- Categories -->
+            <div class="col-3">
+                <div class="bg-light rounded p-3 mb-3" style="min-height: 300px;">
+                    @foreach (var cat in Categories)
                     {
-                        <div class="card m-2 @(selectedProduct == prod ? "border-primary" : "")"
-                             style="width: 120px; border: 2px solid #fff; border-radius: 10px; cursor:pointer;"
-                             @onclick="() => OnProductClick(prod)">
-                            <img src="@prod.ItemPhoto" class="card-img-top" style="height: 100px; object-fit: cover; border-radius: 5px;" />
-                            <div class="card-body p-2">
-                                <div class="fw-bold" style="font-size: 13px;">@prod.ItemName</div>
-                                <div style="font-size: 15px;">@prod.ItemPrice</div>
-                            </div>
-                        </div>
+                        <button class="btn btn-primary w-100 mb-2 @(selectedCategory == cat.Name ? "active" : "")"
+                                @onclick="() => OnCategoryClick(cat)">
+                            @cat.Name
+                        </button>
                     }
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-purple" @onclick="AddItem">Add</button>
+                    <button class="btn btn-purple" @onclick="EditItem" disabled="@(!CanEdit)">Edit</button>
+                    <button class="btn btn-purple" @onclick="DeleteItem" disabled="@(!CanEdit)">Delete</button>
+                </div>
+            </div>
+
+            <!-- Products -->
+            <div class="col">
+                <div class="bg-light rounded p-3" style="min-height: 300px;">
+                    <div class="d-flex flex-wrap">
+                        @foreach (var prod in FilteredProducts)
+                        {
+                            <div class="card m-2 @(selectedProduct == prod ? "border-primary" : "")"
+                                 style="width: 120px; border: 2px solid #fff; border-radius: 10px; cursor:pointer;"
+                                 @onclick="() => OnProductClick(prod)">
+                                <img src="@prod.Photo" class="card-img-top" style="height: 100px; object-fit: cover; border-radius: 5px;" />
+                                <div class="card-body p-2">
+                                    <div class="fw-bold" style="font-size: 13px;">@prod.Name</div>
+                                    <div style="font-size: 15px;">@prod.Price</div>
+                                </div>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
 </div>
 
 <style>
@@ -142,10 +157,10 @@
         color: #fff;
     }
 
-        .btn-purple:hover {
-            background-color: #8a16c1;
-            color: #fff;
-        }
+    .btn-purple:hover {
+        background-color: #8a16c1;
+        color: #fff;
+    }
 
     .border-primary {
         border: 2px solid #007bff !important;

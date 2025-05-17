@@ -2,6 +2,7 @@
 @rendermode InteractiveWebAssembly
 @inject HttpClient Http
 @inject ApiClient.IApiClient ApiClient
+@inject NavigationManager Navigation
 @using System.ComponentModel.DataAnnotations
 @using ApiClient.Models
 
@@ -13,7 +14,7 @@
             <h2 class="fw-bold" style="font-family: Montserrat;">WELCOME</h2>
             <div class="mb-2 text-secondary" style="font-size: 1.2rem;">Batakade POS</div>
         </div>
-        <EditForm Model="@loginModel" OnValidSubmit="HandleLogin" FormName="loginForm">
+        <EditForm Model="@Model" OnValidSubmit="HandleLoginAsync" FormName="LoginForm">
             <DataAnnotationsValidator />
             <ValidationSummary />
             <div class="mb-3">
@@ -22,9 +23,9 @@
                     <span class="input-group-text bg-dark text-white">
                         <i class="bi bi-person"></i>
                     </span>
-                    <InputText class="form-control" @bind-Value="loginModel.Username" autocomplete="username" />
+                    <InputText class="form-control" @bind-Value="Model.Username" autocomplete="username" @bind-Value:after="() => { }" />
                 </div>
-                <ValidationMessage For="@(() => loginModel.Username)" />
+                <ValidationMessage For="@(() => Model.Username)" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
@@ -32,9 +33,9 @@
                     <span class="input-group-text bg-dark text-white">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <InputText class="form-control" @bind-Value="loginModel.Password" type="password" autocomplete="current-password" />
+                    <InputText class="form-control" @bind-Value="Model.Password" type="password" autocomplete="current-password" @bind-Value:after="() => { }" />
                 </div>
-                <ValidationMessage For="@(() => loginModel.Password)" />
+                <ValidationMessage For="@(() => Model.Password)" />
             </div>
             <button type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center">
                 <i class="bi bi-box-arrow-in-right me-2"></i> LOG IN
@@ -50,21 +51,20 @@
 </div>
 
 @code {
-    private LoginRequest loginModel = new();
+    [SupplyParameterFromForm]
+    private LoginRequest? Model { get; set; }
 
-    private async Task HandleLogin()
+    protected override void OnInitialized() => Model ??= new();
+
+    private async Task HandleLoginAsync()
     {
         string errorMessage = "";
 
-        var token = await ApiClient.LoginAsync(loginModel);
-        if (!string.IsNullOrEmpty(token))
+        var response = await ApiClient.LoginAsync(new WPFToBlazor.ApiClient.Models.LoginRequest()
         {
-            // Store token as needed (e.g., local storage, state)
-            //Navigation.NavigateTo("/");
-        }
-        else
-        {
-            errorMessage = "Invalid username or password.";
-        }
+            Password = Model.Password,
+            Username = Model.Username
+        });
+        Navigation.NavigateTo("/", true);
     }
 }

@@ -1,12 +1,22 @@
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
+using WPFToBlazor.Api;
 using WPFToBlazor.ApiClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<DatabaseContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAuthorization();
-builder.Services.AddAuthentication("Bearer").AddJwtBearer();
+//builder.Services.AddAuthorization();
+builder.Services.AddAuthentication("Bearer").AddJwtBearer().AddCookie(options =>
+{
+    options.LoginPath = "/login";
+    options.LogoutPath = "/logout";
+});
 
 builder.AddServiceDefaults();
 
