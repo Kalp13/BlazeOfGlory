@@ -1,7 +1,7 @@
 ﻿@page "/showtransactions"
 @rendermode InteractiveWebAssembly
 @inject NavigationManager Navigation
-
+@inject WPFToBlazor.ApiClient.ApiClient apiClient
 
 <PageTitle>Transactions History</PageTitle>
 
@@ -51,6 +51,15 @@
 </div>
 
 @code {
+    protected override async Task OnInitializedAsync()
+    {
+        // Example: await LoadBillsAsync();
+        // Place your API call or initialization logic here
+        var x = await apiClient.GetAllBillsAsync();
+        var y = 1;
+    }
+        
+
     // Sample data model
     public class Bill
     {
