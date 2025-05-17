@@ -1,5 +1,6 @@
 ﻿@page "/cashier"
 @rendermode InteractiveWebAssembly
+@inject IJSRuntime JS
 @using System.Globalization
 
 <div class="cashier-header d-flex align-items-center px-4 py-2">
@@ -184,10 +185,26 @@
     private void SelectCategory(string cat) { /* TODO: Filter products by category */ }
     private void Cancel() { BillRows.Clear(); Discount = 0; CashReceived = 0; }
     private void Pay() { /* TODO: Payment logic */ }
-    private void PrintBill() { /* TODO: Print logic */ }
+    private async void PrintBill()
+    {
+        var url = "/billprint";
+        await JS.InvokeVoidAsync("openBillPrintWindow", url, 360, 600);
+    }
     private void Logout() { /* TODO: Logout logic */ }
 }
 
+<script>
+    window.openBillPrintWindow = function (url, width, height) {
+      // Center the popup
+      const left = (screen.width/2)-(width/2);
+      const top = (screen.height/2)-(height/2);
+      window.open(
+        url,
+        '_blank',
+        `width=${width},height=${height},left=${left},top=${top},resizable,scrollbars`
+      );
+    }
+</script>
 
 <style>
     .cashier-header {

@@ -1,6 +1,6 @@
 ﻿@page "/managecashiers"
 @inject NavigationManager Navigation
-@inject WPFToBlazor.ApiClient.ApiClient apiClient
+@inject ApiClient.IApiClient ApiClient
 @using System.Collections.ObjectModel
 @using WPFToBlazor.ApiClient.Models
 @using WPFToBlazor.Models
@@ -70,12 +70,12 @@
     private bool isMaximized = false;
     private string windowStyle = "height: 80vh;";
 
-    List<UserApiModel> Users;
+    List<UserApiModel> Users = new();
 
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
-        Users = await apiClient.GetAllUsersAsync();
+        Users = await ApiClient.GetAllUsersAsync();
     }
 
     private void HandleMouseEnter()

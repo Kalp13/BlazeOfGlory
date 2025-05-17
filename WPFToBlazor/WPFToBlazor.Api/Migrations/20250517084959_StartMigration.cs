@@ -29,7 +29,7 @@ namespace WPFToBlazor.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Bills",
+                name: "CorrectBills",
                 columns: table => new
                 {
                     billId = table.Column<string>(type: "TEXT", nullable: false),
@@ -58,7 +58,7 @@ namespace WPFToBlazor.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Items",
+                name: "CorrectItems",
                 columns: table => new
                 {
                     ItemId = table.Column<long>(type: "INTEGER", nullable: false)
@@ -74,7 +74,7 @@ namespace WPFToBlazor.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TM",
+                name: "CorrectTM",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -87,7 +87,7 @@ namespace WPFToBlazor.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Transaction",
+                name: "CorrectTransaction",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -101,7 +101,7 @@ namespace WPFToBlazor.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "CorrectUsers",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "INTEGER", nullable: false)
