@@ -42,15 +42,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var cashier in Users)
+                    @if (Users.Count == 0)
                     {
-                        <tr class="border-t">
-                            <td class="p-2"><img src="@cashier.ProfilePicture" alt="Image" class="h-10 w-10 rounded-full" /></td>
-                            <td class="p-2">@cashier.Name</td>
-                            <td class="p-2">@cashier.Password</td>
-                            <td class="p-2">@cashier.CashierId</td>
-                            <td class="p-2">@cashier.PhoneNumber</td>
+                        <tr>
+                            <td colspan="5" class="text-center text-gray-500">No cashiers found. Please create a new user.</td>
                         </tr>
+                    }
+                    else
+                    {
+                        @foreach (var cashier in Users)
+                        {
+                            <tr class="border-t">
+                                <td class="p-2"><img src="@cashier.ProfilePicture" alt="Image" class="h-10 w-10 rounded-full" /></td>
+                                <td class="p-2">@cashier.Name</td>
+                                <td class="p-2">@cashier.Password</td>
+                                <td class="p-2">@cashier.CashierId</td>
+                                <td class="p-2">@cashier.PhoneNumber</td>
+                            </tr>
+                        }
                     }
                 </tbody>
             </table>
@@ -75,7 +84,8 @@
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
-        Users = await ApiClient.GetAllUsersAsync();
+        var result = await ApiClient.GetAllUsersAsync();
+        Users = result ?? new List<UserApiModel>();
     }
 
     private void HandleMouseEnter()
