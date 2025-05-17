@@ -3,7 +3,7 @@
 @inject NavigationManager Navigation
 @using ApiClient.Models
 @inject HttpClient Http
-@inject ApiClient.IApiClient ApiClient
+@inject WPFToBlazor.ApiClient.ApiClient apiClient
 
 @code {
     private List<CategoryApiModel> Categories = new();
@@ -18,8 +18,8 @@
         try
         {
             isLoading = true;
-            Categories = await ApiClient.GetAllCategoriesAsync() ?? new();
-            Products = await ApiClient.GetAllItemsAsync() ?? new();
+            Categories = await apiClient.GetAllCategoriesAsync() ?? new();
+            Products = await apiClient.GetAllItemsAsync() ?? new();
         }
         catch (Exception ex)
         {
@@ -66,7 +66,7 @@
         {
             try
             {
-                await ApiClient.DeleteItemAsync(selectedProduct.ItemId);
+                await apiClient.DeleteItemAsync(selectedProduct.ItemId);
                 Products.Remove(selectedProduct);
                 selectedProduct = null;
             }
