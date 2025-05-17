@@ -1,6 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using WPFToBlazor.Api;
 using WPFToBlazor.ApiClient;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<DatabaseContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
