@@ -52,6 +52,11 @@
         selectedCategory = cat.Name;
     }
 
+    private void OnProductClick(Product prod)
+    {
+        selectedProduct = prod;
+    }
+
     private void AddItem() { /* TODO: Add logic */ }
     private void EditItem() { /* TODO: Edit logic */ }
     private void DeleteItem() { /* TODO: Delete logic */ }
@@ -100,7 +105,7 @@
                 <div class="d-flex flex-wrap">
                     @foreach (var prod in FilteredProducts)
                     {
-                        <div class="card m-2" style="width: 120px; border: 2px solid #fff; border-radius: 10px;">
+                        <div class="card m-2 @(selectedProduct == prod ? "border-primary border-3" : "")" style="width: 120px; border: 2px solid #fff; border-radius: 10px; cursor: pointer;" @onclick="() => OnProductClick(prod)">
                             @if (!string.IsNullOrEmpty(prod.ItemPhoto))
                             {
                                 <img src="@prod.ItemPhoto" class="card-img-top" style="height: 100px; object-fit: cover; border-radius: 5px;" />
