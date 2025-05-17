@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using WPFToBlazor.Data.Model;
+using WPFToBlazor.ApiClient.Models;
 
 namespace WPFToBlazor.Api.Controllers
 {
@@ -31,7 +31,7 @@ namespace WPFToBlazor.Api.Controllers
                 return Unauthorized();
 
             var token = GenerateJwtToken(user);
-            return Ok(new { token });
+            return Ok(new LoginResponse(token));
         }
 
         private string GenerateJwtToken(User user)
@@ -53,12 +53,6 @@ namespace WPFToBlazor.Api.Controllers
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-        public class LoginRequest
-        {
-            public string Username { get; set; } = string.Empty;
-            public string Password { get; set; } = string.Empty;
         }
     }
 }

@@ -3,7 +3,7 @@ using WPFToBlazor.ApiClient.Models;
 
 namespace WPFToBlazor.ApiClient
 {
-    public class ApiClient
+    public class ApiClient : IApiClient
     {
         private readonly HttpClient _httpClient;
 
@@ -208,6 +208,21 @@ namespace WPFToBlazor.ApiClient
         {
             var response = await _httpClient.DeleteAsync($"api/Users/{id}");
             response.EnsureSuccessStatusCode();
+        }
+
+        #endregion
+
+        #region Authentication API Calls
+
+        public async Task<string?> LoginAsync(LoginRequest request)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/Authentication/login", request);
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            // If the response is { "token": "..." }
+            var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
+            return result?.Token;
         }
 
         #endregion

@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WPFToBlazor.ApiClient\WPFToBlazor.ApiClient.csproj" />
     <ProjectReference Include="..\WPFToBlazor.Data\WPFToBlazor.Data.csproj" />
     <ProjectReference Include="..\WPFToBlazor.ServiceDefaults\WPFToBlazor.ServiceDefaults.csproj" />
   </ItemGroup>
