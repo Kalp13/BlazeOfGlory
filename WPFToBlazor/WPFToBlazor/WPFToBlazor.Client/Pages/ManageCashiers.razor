@@ -1,0 +1,132 @@
+﻿@page "/managecashiers"
+@using System.Collections.ObjectModel
+@using WPFToBlazor.Models
+
+<h3>ManageCashiers</h3>
+
+@using System.ComponentModel.DataAnnotations
+
+<div class="flex h-screen bg-gradient-to-br from-purple-900 to-red-800 text-white">
+    <!-- Sidebar -->
+    <div class="w-64 p-4 bg-gradient-to-b from-indigo-800 to-purple-700">
+        <div class="text-2xl font-bold mb-10">🍔 Bata Kade</div>
+        <nav class="space-y-3">
+            <a href="#" class="block px-4 py-2 bg-purple-600 rounded-lg">ManageCashier</a>
+            <a href="#" class="block px-4 py-2 hover:bg-purple-600 rounded-lg">ManageItem</a>
+            <a href="#" class="block px-4 py-2 hover:bg-purple-600 rounded-lg text-cyan-300">Show Transaction</a>
+        </nav>
+        <button class="mt-16 w-full bg-fuchsia-600 hover:bg-fuchsia-700 py-2 rounded-lg">
+            LOG OUT
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-8 bg-cover bg-center relative" style="background-image: url('/images/food-background.jpg')">
+        <div class="absolute top-4 right-4 text-white text-sm">AM @DateTime.Now.ToString("hh:mm:ss")</div>
+        <h1 class="text-3xl font-semibold mb-6">Manage Cashiers</h1>
+
+        <!-- Cashier Table -->
+        <div class="bg-white text-black rounded-lg shadow p-6 w-full max-w-3xl">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="p-2">Image</th>
+                        <th class="p-2">Cashier Name</th>
+                        <th class="p-2">Password</th>
+                        <th class="p-2">Cashier Id</th>
+                        <th class="p-2">Phone Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cashier in Users)
+                    {
+                        <tr class="border-t">
+                            <td class="p-2"><img src="@cashier.ProfilePicture" alt="Image" class="h-10 w-10 rounded-full" /></td>
+                            <td class="p-2">@cashier.Name</td>
+                            <td class="p-2">@cashier.Password</td>
+                            <td class="p-2">@cashier.CashierId</td>
+                            <td class="p-2">@cashier.PhoneNumber</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Buttons -->
+        <div class="control-bar" @onmouseover="HandleMouseEnter">
+            <button class="btn" @onclick="MinimizeWindow">_</button>
+            <button class="btn" @onclick="ToggleMaximizeWindow">🗖</button>
+            <button class="btn" @onclick="ShutdownApp">X</button>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    private bool isMaximized = false;
+    private string windowStyle = "height: 80vh;";
+
+    List<User> Users;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        LoadUsers();
+    }
+
+    private void HandleMouseEnter()
+    {
+        // Simulate resetting window size limits (if needed)
+        // In Blazor, this doesn't actually control browser height
+        windowStyle = "height: 90vh;";
+    }
+
+    private void ShutdownApp()
+    {
+        // You can't shut down the browser, so just simulate logging out
+        NavigationManager.NavigateTo("/logout", forceLoad: true);
+    }
+
+    private void MinimizeWindow()
+    {
+        // Simulate minimizing by hiding content
+        windowStyle = "display: none;";
+    }
+
+    private void ToggleMaximizeWindow()
+    {
+        isMaximized = !isMaximized;
+        windowStyle = isMaximized ? "height: 100vh;" : "height: 80vh;";
+    }
+
+    [Inject]
+    NavigationManager NavigationManager { get; set; }
+
+    private void LoadUsers()
+    {
+        if(Users == null)
+        {
+            Users = new();    
+        }
+
+        Users.Clear();
+        Users = new()
+    {
+        new User { Name = "Cash", Password = "cash", CashierId = "10", PhoneNumber = "66" },
+        new User { Name = "hgfh", Password = "hgfh", CashierId = "hghfg", PhoneNumber = "876546" },
+        new User { Name = "hgfh", Password = "hgfh", CashierId = "hghfg", PhoneNumber = "876546" }
+    };
+        //users = new ObservableCollection<User>();
+        // using (var db = new DatabaseContext())
+        // {
+        //     var cashiers = db.Users
+        //     .Where(b => b.IsAdmin == 0)
+        //     .ToList();
+
+        //     foreach (var cashier in cashiers)
+        //     {
+        //         Users.Add(cashier);
+        //     }
+        // }
+    }
+}
