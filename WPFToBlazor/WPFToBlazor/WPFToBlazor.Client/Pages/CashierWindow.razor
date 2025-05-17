@@ -2,6 +2,7 @@
 @rendermode InteractiveWebAssembly
 @inject IJSRuntime JS
 @using System.Globalization
+@using WPFToBlazor.Client.Models
 
 <div class="cashier-header d-flex align-items-center px-4 py-2">
     <div class="profile-pic me-3"></div>
@@ -134,7 +135,7 @@
         </div>
     </div>
 </div>
-
+<BillPrintModal Show="@ShowBillPrintModal" Bill="@CurrentBill" OnClose="HideBillPrintModal" />
 @code {
     public class BillRow
     {
@@ -185,12 +186,40 @@
     private void SelectCategory(string cat) { /* TODO: Filter products by category */ }
     private void Cancel() { BillRows.Clear(); Discount = 0; CashReceived = 0; }
     private void Pay() { /* TODO: Payment logic */ }
-    private async void PrintBill()
+    private async void PrintBill2()
     {
         var url = "/billprint";
         await JS.InvokeVoidAsync("openBillPrintWindow", url, 360, 600);
     }
     private void Logout() { /* TODO: Logout logic */ }
+
+    private bool ShowBillPrintModal { get; set; }
+    private BillModel CurrentBill { get; set; } = new();
+
+    private void PrintBill()
+    {
+        // Fill CurrentBill with the current bill data
+        CurrentBill = new BillModel
+            {
+                BillNo = 1234,
+                Date = DateTime.Now,
+                CashierName = "Cash",
+                Items = BillRows.Select(x => new BillItem
+                {
+                    Name = x.ItemName,
+                    Price = x.ItemPrice,
+                    Qty = x.Qty
+                }).ToList(),
+                DiscountPercent = Discount,
+                CashReceived = CashReceived
+            };
+        ShowBillPrintModal = true;
+    }
+
+    private void HideBillPrintModal()
+    {
+        ShowBillPrintModal = false;
+    }
 }
 
 <script>

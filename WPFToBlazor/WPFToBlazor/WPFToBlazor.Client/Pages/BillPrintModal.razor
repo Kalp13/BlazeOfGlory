@@ -1,0 +1,104 @@
+﻿@using System.Globalization
+@using WPFToBlazor.Client.Models
+
+@if (Show)
+{
+    <div class="modal-backdrop fade show"></div>
+    <div class="modal d-block" tabindex="-1" style="background:rgba(0,0,0,0.2);">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bill-print-container">
+                <div class="modal-header">
+                    <h5 class="modal-title">Bill Print</h5>
+                    <button type="button" class="btn-close" @onclick="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="bill-header text-center">
+                        <h4>Batakade POS</h4>
+                        <div>Bill No: @Bill.BillNo</div>
+                        <div>Date: @Bill.Date.ToString("yyyy-MM-dd HH:mm")</div>
+                        <div>Cashier: @Bill.CashierName</div>
+                    </div>
+                    <hr />
+                    <table class="table table-sm bill-table mb-2">
+                        <thead>
+                            <tr>
+                                <th style="width:40%;">Item</th>
+                                <th style="width:20%;">Price</th>
+                                <th style="width:20%;">Qty</th>
+                                <th style="width:20%;">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Bill.Items)
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.Price.ToString("0.##")</td>
+                                    <td>@item.Qty</td>
+                                    <td>@item.Total.ToString("0.##")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <hr />
+                    <div class="bill-summary">
+                        <div class="d-flex justify-content-between"><span>Grand Total:</span><span>@Bill.GrandTotal.ToString("0.##")</span></div>
+                        <div class="d-flex justify-content-between"><span>Discount (@Bill.DiscountPercent)%:</span><span>@Bill.DiscountAmount.ToString("0.##")</span></div>
+                        <div class="d-flex justify-content-between"><span>Sub Total:</span><span>@Bill.SubTotal.ToString("0.##")</span></div>
+                        <div class="d-flex justify-content-between"><span>Cash Received:</span><span>@Bill.CashReceived.ToString("0.##")</span></div>
+                        <div class="d-flex justify-content-between"><span>Balance:</span><span>@Bill.Balance.ToString("0.##")</span></div>
+                    </div>
+                    <hr />
+                    <div class="text-center mt-2">Thank you for your purchase!</div>
+                </div>
+                <div class="modal-footer d-print-none">
+                    <button class="btn btn-secondary" @onclick="Close">Close</button>
+                    <button class="btn btn-primary" @onclick="Print">Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public bool Show { get; set; }
+    [Parameter] public BillModel Bill { get; set; } = default!;
+    [Parameter] public EventCallback OnClose { get; set; }
+
+    [Inject] private IJSRuntime JS { get; set; } = default!;
+
+    private async Task Print()
+    {
+        await JS.InvokeVoidAsync("window.print");
+    }
+
+    private async Task Close()
+    {
+        if (OnClose.HasDelegate)
+            await OnClose.InvokeAsync();
+    }
+}
+
+<style>
+    .bill-print-container {
+        max-width: 350px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        font-size: 0.95rem;
+    }
+
+    .bill-header h4 {
+        margin-bottom: 0.5rem;
+    }
+
+    .bill-table th, .bill-table td {
+        padding: 0.25rem 0.5rem;
+    }
+
+    .bill-summary > div {
+        margin-bottom: 0.25rem;
+    }
+</style>
