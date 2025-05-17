@@ -11,7 +11,7 @@
             <h2 class="fw-bold" style="font-family: Montserrat;">WELCOME</h2>
             <div class="mb-2 text-secondary" style="font-size: 1.2rem;">Batakade POS</div>
         </div>
-        <EditForm Model="@loginModel" OnValidSubmit="HandleLogin" FormName="loginForm">
+        <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
             <DataAnnotationsValidator />
             <ValidationSummary />
             <div class="mb-3">
@@ -52,14 +52,32 @@
 
     private async void HandleLogin()
     {
-        
+        // TODO: Implement your login logic here
+        // For now, just a placeholder
+
+        var response = await Http.PostAsJsonAsync("api/auth/login", loginModel);
+        if (response.IsSuccessStatusCode)
+        {
+            // Handle successful login (e.g., redirect, show message)
+        }
+        else
+        {
+            // Handle error (e.g., show error message)
+        }
+
+        using(HttpClient client = new HttpClient())
+        {
+            
+        }
 
     }
 
     public class LoginModel
     {
-        public string Username { get; set; }
+        [Required]
+        public string Username { get; set; } = string.Empty;
 
-        public string Password { get; set; }
+        [Required]
+        public string Password { get; set; } = string.Empty;
     }
 }
