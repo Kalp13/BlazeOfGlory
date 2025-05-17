@@ -1154,11 +1154,22 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+      "WPFToBlazor.ApiClient/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/WPFToBlazor.ApiClient.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WPFToBlazor.ApiClient.dll": {}
+        }
+      },
       "WPFToBlazor.Client/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "Microsoft.AspNetCore.Components.WebAssembly": "8.0.15"
+          "Microsoft.AspNetCore.Components.WebAssembly": "8.0.15",
+          "WPFToBlazor.ApiClient": "1.0.0"
         },
         "compile": {
           "bin/placeholder/WPFToBlazor.Client.dll": {}
@@ -2759,6 +2770,11 @@
         "system.threading.ratelimiting.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "WPFToBlazor.ApiClient/1.0.0": {
+      "type": "project",
+      "path": "../../WPFToBlazor.ApiClient/WPFToBlazor.ApiClient.csproj",
+      "msbuildProject": "../../WPFToBlazor.ApiClient/WPFToBlazor.ApiClient.csproj"
     },
     "WPFToBlazor.Client/1.0.0": {
       "type": "project",
