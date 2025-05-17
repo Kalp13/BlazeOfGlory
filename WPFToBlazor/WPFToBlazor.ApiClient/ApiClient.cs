@@ -12,6 +12,7 @@ namespace WPFToBlazor.ApiClient
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri(configuration["ApiBaseUrl"]);
+            _httpClient.Timeout = TimeSpan.FromSeconds(120); // Set a timeout for the HttpClient
         }
 
         #region Bill API Calls

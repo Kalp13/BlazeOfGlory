@@ -2,6 +2,7 @@
 @rendermode InteractiveWebAssembly
 @inject HttpClient Http
 @inject ApiClient.IApiClient ApiClient
+@inject NavigationManager Navigation
 @using System.ComponentModel.DataAnnotations
 @using ApiClient.Models
 
@@ -64,6 +65,6 @@
             Password = Model.Password,
             Username = Model.Username
         });
-        Console.WriteLine(response);
+        Navigation.NavigateTo("/", true);
     }
 }
