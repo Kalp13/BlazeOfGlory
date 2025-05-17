@@ -185,7 +185,7 @@
     private void DeleteRow(BillRow row) => BillRows.Remove(row);
     private void SelectCategory(string cat) { /* TODO: Filter products by category */ }
     private void Cancel() { BillRows.Clear(); Discount = 0; CashReceived = 0; }
-    private void Pay() { /* TODO: Payment logic */ }
+    private void Pay() { BillRows.Clear(); Discount = 0; CashReceived = 0; }
     private async void PrintBill2()
     {
         var url = "/billprint";
