@@ -1,6 +1,10 @@
 ﻿@page "/managecashiers"
+@inject NavigationManager Navigation
+@inject ApiClient.IApiClient ApiClient
 @using System.Collections.ObjectModel
+@using WPFToBlazor.ApiClient.Models
 @using WPFToBlazor.Models
+
 
 <h3>ManageCashiers</h3>
 
@@ -66,12 +70,12 @@
     private bool isMaximized = false;
     private string windowStyle = "height: 80vh;";
 
-    List<User> Users;
+    List<UserApiModel> Users;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
-        LoadUsers();
+        Users = await ApiClient.GetAllUsersAsync();
     }
 
     private void HandleMouseEnter()
@@ -84,7 +88,7 @@
     private void ShutdownApp()
     {
         // You can't shut down the browser, so just simulate logging out
-        NavigationManager.NavigateTo("/logout", forceLoad: true);
+        Navigation.NavigateTo("/logout", forceLoad: true);
     }
 
     private void MinimizeWindow()
@@ -97,36 +101,5 @@
     {
         isMaximized = !isMaximized;
         windowStyle = isMaximized ? "height: 100vh;" : "height: 80vh;";
-    }
-
-    [Inject]
-    NavigationManager NavigationManager { get; set; }
-
-    private void LoadUsers()
-    {
-        if(Users == null)
-        {
-            Users = new();    
-        }
-
-        Users.Clear();
-        Users = new()
-    {
-        new User { Name = "Cash", Password = "cash", CashierId = "10", PhoneNumber = "66" },
-        new User { Name = "hgfh", Password = "hgfh", CashierId = "hghfg", PhoneNumber = "876546" },
-        new User { Name = "hgfh", Password = "hgfh", CashierId = "hghfg", PhoneNumber = "876546" }
-    };
-        //users = new ObservableCollection<User>();
-        // using (var db = new DatabaseContext())
-        // {
-        //     var cashiers = db.Users
-        //     .Where(b => b.IsAdmin == 0)
-        //     .ToList();
-
-        //     foreach (var cashier in cashiers)
-        //     {
-        //         Users.Add(cashier);
-        //     }
-        // }
     }
 }

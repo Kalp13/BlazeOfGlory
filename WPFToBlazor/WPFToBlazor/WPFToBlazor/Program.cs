@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Components.Authorization;
+using WPFToBlazor.ApiClient;
 using WPFToBlazor.ApiClient;
 using WPFToBlazor.Client.Pages;
 using WPFToBlazor.Components;
-using WPFToBlazor.ApiClient;
+using WPFToBlazor.Helper;
 
 namespace WPFToBlazor
 {
@@ -15,6 +17,8 @@ namespace WPFToBlazor
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveWebAssemblyComponents();
+
+            builder.Services.AddScoped<AuthenticationService>();
 
             // Register HttpClient for ApiClient
             builder.Services.AddHttpClient<IApiClient, ApiClient.ApiClient>(client =>
