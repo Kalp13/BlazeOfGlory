@@ -9,11 +9,6 @@ namespace WPFToBlazor.Data.Model
 {
     public class User
     {
-        private string itemName;
-        private int itemPrice;
-        private string itemCategory;
-        private string img;
-
         public int UserId { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
@@ -34,14 +29,6 @@ namespace WPFToBlazor.Data.Model
             Password = password;
             CashierId = cashierId;
             ProfilePicture = profilePicture;
-        }
-
-        public User(string itemName, int itemPrice, string itemCategory, string img)
-        {
-            this.itemName = itemName;
-            this.itemPrice = itemPrice;
-            this.itemCategory = itemCategory;
-            this.img = img;
         }
     }
 }

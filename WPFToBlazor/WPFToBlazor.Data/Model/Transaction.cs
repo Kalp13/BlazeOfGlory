@@ -10,25 +10,14 @@ namespace WPFToBlazor.Data.Model
     public class Transaction
     {
         [Key]
-        public int billId { get; set; }
-        public string billDateTime { get; set; }
-        public List<BillRowItem> billItems { get; set; }
-        public double billTotal { get; set; }
+        public long Id { get; set; }
+        public DateTime TransactionDateTime { get; set; }
+        public List<BillRowItem> Items { get; set; }
+        public double Total { get; set; }
 
-        public Transaction
-            (
-                int billId, 
-                string billDateTime, 
-                List<BillRowItem> billItems, 
-                double billTotal
-            )
+        public Transaction()
         {
-            this.billId = billId;
-            this.billDateTime = billDateTime;
-            this.billItems = billItems;
-            this.billTotal = billTotal;
+            
         }
-
-
     }
 }

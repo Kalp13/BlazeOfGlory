@@ -8,33 +8,17 @@ namespace WPFToBlazor.Data.Model
 {
     public class Item
     {
-        public int itemId { get; set; }
-        public string itemName { get; set; }
-        public int itemPrice { get; set; }
+        public long ItemId { get; set; }
+        public string Name { get; set; }
+        public int Price { get; set; }
 
-        public string itemCategory { get; set; }
+        public string Category { get; set; }
 
-        public string itemPhoto { get; set; }
+        public string Photo { get; set; }
 
-
-
-        public Item() { }
-        public Item(int itemId, string itemName, int itemPrice, string itemCategory, string itemPhoto)
+        public Item()
         {
-            this.itemId = itemId;
-            this.itemName = itemName;
-            this.itemPrice = itemPrice;
-            this.itemCategory = itemCategory;
-            this.itemPhoto = itemPhoto;
+            
         }
-        public Item(string itemName, int itemPrice, string itemCategory, string itemPhoto)
-        {
-
-            this.itemName = itemName;
-            this.itemPrice = itemPrice;
-            this.itemCategory = itemCategory;
-            this.itemPhoto = itemPhoto;
-        }
-
     }
 }

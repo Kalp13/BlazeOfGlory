@@ -17,6 +17,10 @@ namespace WPFToBlazor.Api
         public DbSet<Bill> Bills { get; set; }
         public DbSet<TestModel> TM { get; set; }
         public object Categories { get; internal set; }
+        public DbSet<WPFToBlazor.Data.Model.BillDataModel> BillDataModel { get; set; } = default!;
+        public DbSet<WPFToBlazor.Data.Model.BillRowItem> BillRowItem { get; set; } = default!;
+        public DbSet<WPFToBlazor.Data.Model.Category> Category { get; set; } = default!;
+        public DbSet<WPFToBlazor.Data.Model.Transaction> Transaction { get; set; } = default!;
         //public DbSet<BillRowItem> BillRowItems { get; set; }
 
         //public DbSet<Transaction> Transactions { get; set; }
