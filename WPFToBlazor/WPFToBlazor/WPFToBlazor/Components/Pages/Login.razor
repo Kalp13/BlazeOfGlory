@@ -13,7 +13,7 @@
             <h2 class="fw-bold" style="font-family: Montserrat;">WELCOME</h2>
             <div class="mb-2 text-secondary" style="font-size: 1.2rem;">Batakade POS</div>
         </div>
-        <EditForm Model="@loginModel" OnValidSubmit="HandleLoginAsync" FormName="LoginForm">
+        <EditForm Model="@Model" OnValidSubmit="HandleLoginAsync" FormName="LoginForm">
             <DataAnnotationsValidator />
             <ValidationSummary />
             <div class="mb-3">
@@ -22,9 +22,9 @@
                     <span class="input-group-text bg-dark text-white">
                         <i class="bi bi-person"></i>
                     </span>
-                    <InputText class="form-control" @bind-Value="loginModel.Username" autocomplete="username" />
+                    <InputText class="form-control" @bind-Value="Model.Username" autocomplete="username" @bind-Value:after="() => { }" />
                 </div>
-                <ValidationMessage For="@(() => loginModel.Username)" />
+                <ValidationMessage For="@(() => Model.Username)" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
@@ -32,9 +32,9 @@
                     <span class="input-group-text bg-dark text-white">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <InputText class="form-control" @bind-Value="loginModel.Password" type="password" autocomplete="current-password" />
+                    <InputText class="form-control" @bind-Value="Model.Password" type="password" autocomplete="current-password" @bind-Value:after="() => { }" />
                 </div>
-                <ValidationMessage For="@(() => loginModel.Password)" />
+                <ValidationMessage For="@(() => Model.Password)" />
             </div>
             <button type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center">
                 <i class="bi bi-box-arrow-in-right me-2"></i> LOG IN
@@ -50,7 +50,10 @@
 </div>
 
 @code {
-    private LoginRequest loginModel = new();
+    [SupplyParameterFromForm]
+    private LoginRequest? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
 
     private async Task HandleLoginAsync()
     {
@@ -58,18 +61,9 @@
 
         var response = await ApiClient.LoginAsync(new WPFToBlazor.ApiClient.Models.LoginRequest()
         {
-            Password = loginModel.Password,
-            Username = loginModel.Username
+            Password = Model.Password,
+            Username = Model.Username
         });
         Console.WriteLine(response);
-    }
-
-    public class LoginModel
-    {
-        [Required]
-        public string Username { get; set; } = string.Empty;
-
-        [Required]
-        public string Password { get; set; } = string.Empty;
     }
 }
