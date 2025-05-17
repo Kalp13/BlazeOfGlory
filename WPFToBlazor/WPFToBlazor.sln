@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFToBlazor", "WPFToBlazor\WPFToBlazor\WPFToBlazor.csproj", "{50335E94-63C5-4238-9291-DF12F7BB3C40}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFToBlazor.Client", "WPFToBlazor\WPFToBlazor.Client\WPFToBlazor.Client.csproj", "{44CC438E-2219-47F5-A87F-67503172CCBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFToBlazor.WebApi", "WPFToBlazor.WebApi\WPFToBlazor.WebApi.csproj", "{5AB45DA9-1AE2-9837-6C91-0119D7297988}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFToBlazor.AppHost", "WPFToBlazor.AppHost\WPFToBlazor.AppHost.csproj", "{86917886-6625-49AD-9785-AD0DE9551903}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFToBlazor.ServiceDefaults", "WPFToBlazor.ServiceDefaults\WPFToBlazor.ServiceDefaults.csproj", "{F27BCC7C-F3CD-5D41-D92D-ED8B9EF4DC3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{44CC438E-2219-47F5-A87F-67503172CCBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44CC438E-2219-47F5-A87F-67503172CCBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44CC438E-2219-47F5-A87F-67503172CCBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AB45DA9-1AE2-9837-6C91-0119D7297988}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AB45DA9-1AE2-9837-6C91-0119D7297988}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AB45DA9-1AE2-9837-6C91-0119D7297988}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AB45DA9-1AE2-9837-6C91-0119D7297988}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86917886-6625-49AD-9785-AD0DE9551903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86917886-6625-49AD-9785-AD0DE9551903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86917886-6625-49AD-9785-AD0DE9551903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86917886-6625-49AD-9785-AD0DE9551903}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F27BCC7C-F3CD-5D41-D92D-ED8B9EF4DC3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F27BCC7C-F3CD-5D41-D92D-ED8B9EF4DC3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F27BCC7C-F3CD-5D41-D92D-ED8B9EF4DC3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F27BCC7C-F3CD-5D41-D92D-ED8B9EF4DC3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
