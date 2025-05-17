@@ -22,7 +22,7 @@
                     <span class="input-group-text bg-dark text-white">
                         <i class="bi bi-person"></i>
                     </span>
-                    <InputText class="form-control" @bind="Username" autocomplete="username" />
+                    <InputText class="form-control" @bind-Value="loginModel.Username" autocomplete="username" />
                 </div>
                 <ValidationMessage For="@(() => loginModel.Username)" />
             </div>
@@ -32,7 +32,7 @@
                     <span class="input-group-text bg-dark text-white">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <InputText class="form-control" @bind="Password" type="password" autocomplete="current-password" />
+                    <InputText class="form-control" @bind-Value="loginModel.Password" type="password" autocomplete="current-password" />
                 </div>
                 <ValidationMessage For="@(() => loginModel.Password)" />
             </div>
