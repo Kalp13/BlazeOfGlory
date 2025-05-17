@@ -1,5 +1,6 @@
 using WPFToBlazor.Client.Pages;
 using WPFToBlazor.Components;
+using WPFToBlazor.ApiClient;
 
 namespace WPFToBlazor
 {
@@ -13,6 +14,8 @@ namespace WPFToBlazor
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveWebAssemblyComponents();
+
+            builder.Services.AddScoped<IApiClient, DummyApiClient>();
 
             var app = builder.Build();
 

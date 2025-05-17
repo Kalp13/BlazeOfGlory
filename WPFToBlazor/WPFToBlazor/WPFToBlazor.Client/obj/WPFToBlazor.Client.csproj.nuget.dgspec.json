@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj": {}
+    "C:\\Source\\Repos\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj": {}
   },
   "projects": {
-    "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj": {
+    "C:\\Source\\Repos\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj",
-        "projectName": "WPFToBlazor.Client",
-        "projectPath": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj",
-        "packagesPath": "C:\\Users\\RudolphKalp\\.nuget\\packages\\",
-        "outputPath": "C:\\VSTS\\BlazeOfGlory\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor.Client\\obj\\",
+        "projectUniqueName": "C:\\Source\\Repos\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj",
+        "projectName": "WPFToBlazor.ApiClient",
+        "projectPath": "C:\\Source\\Repos\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj",
+        "packagesPath": "C:\\Users\\PieterDoorewaard\\.nuget\\packages\\",
+        "outputPath": "C:\\Source\\Repos\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\RudolphKalp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PieterDoorewaard\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://pkgs.dev.azure.com/lsproperty/_packaging/Lightstone.Common/nuget/v3/index.json": {}
         },
@@ -46,29 +45,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "dependencies": {
-            "Microsoft.AspNetCore.Components.WebAssembly": {
-              "target": "Package",
-              "version": "[8.0.15, )"
-            },
-            "Microsoft.NET.ILLink.Tasks": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[9.0.5, )",
-              "autoReferenced": true
-            },
-            "Microsoft.NET.Sdk.WebAssembly.Pack": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[9.0.5, )",
-              "autoReferenced": true
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -85,7 +66,101 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Source\\Repos\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Source\\Repos\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj",
+        "projectName": "WPFToBlazor.Client",
+        "projectPath": "C:\\Source\\Repos\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor.Client\\WPFToBlazor.Client.csproj",
+        "packagesPath": "C:\\Users\\PieterDoorewaard\\.nuget\\packages\\",
+        "outputPath": "C:\\Source\\Repos\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor.Client\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\PieterDoorewaard\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/lsproperty/_packaging/Lightstone.Common/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Source\\Repos\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj": {
+                "projectPath": "C:\\Source\\Repos\\BlazeOfGlory\\WPFToBlazor\\WPFToBlazor.ApiClient\\WPFToBlazor.ApiClient.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[8.0.15, )"
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.4, )",
+              "autoReferenced": true
+            },
+            "Microsoft.NET.Sdk.WebAssembly.Pack": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.4, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[9.0.4, 9.0.4]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
