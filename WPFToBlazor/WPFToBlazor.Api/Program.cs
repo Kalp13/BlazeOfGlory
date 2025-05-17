@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 using WPFToBlazor.Api;
 using WPFToBlazor.ApiClient;
 
@@ -10,8 +11,8 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAuthorization();
-builder.Services.AddAuthentication("Bearer").AddJwtBearer();
+//builder.Services.AddAuthorization();
+//builder.Services.AddAuthentication("Bearer").AddJwtBearer();
 
 builder.AddServiceDefaults();
 
