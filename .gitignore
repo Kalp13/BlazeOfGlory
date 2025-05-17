@@ -399,3 +399,16 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Blazor specific
+wwwroot/dist/
+wwwroot/node_modules/
+wwwroot/lib/
+*.db
+
+# Local user secrets (for ASP.NET Core/Blazor)
+**/appsettings.Development.json
+**/secrets.json
+
+# Launch settings (local dev only)
+Properties/launchSettings.json
