@@ -1,5 +1,7 @@
 ﻿@page "/login"
 @rendermode InteractiveWebAssembly
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject ProtectedSessionStorage ProtectedSessionStore
 @inject HttpClient Http
 @inject ApiClient.IApiClient ApiClient
 @inject NavigationManager Navigation
@@ -65,6 +67,20 @@
             Password = Model.Password,
             Username = Model.Username
         });
+
+        if (response is null)
+        {
+            errorMessage = "Login failed. Please try again.";
+        }
+        else if (string.IsNullOrWhiteSpace(response))
+        {
+            await ProtectedSessionStore.SetAsync("token", response);
+            await ProtectedSessionStore.SetAsync("username", Model.Username);
+        }
+        else
+        {
+            errorMessage = "Login failed. Please try again.";
+        }
 
         Navigation.NavigateTo("/", true);
     }

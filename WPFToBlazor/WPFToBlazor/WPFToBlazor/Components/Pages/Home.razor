@@ -1,9 +1,25 @@
 ﻿@page "/"
 
-<Login></Login>
+@if (user == "admin")
+{
+    <PageTitle>Home</PageTitle>
 
-<PageTitle>Home</PageTitle>
+    <h1>Hello, world!</h1>
 
-<h1>Hello, world!</h1>
+    <p>Welcome admin</p>
 
-Welcome to your new app.
+}
+else if (user == "cash")
+{
+    <PageTitle>Home</PageTitle>
+
+    <p>Welcome admin</p>
+}
+else
+{
+    <Login></Login>
+}
+
+@code {
+    private user = ProtectedSessionStore.GetAsync<User>("user").Result.Value;
+}
