@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using WPFToBlazor.ApiClient.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace WPFToBlazor.ApiClient
 {
@@ -7,9 +8,10 @@ namespace WPFToBlazor.ApiClient
     {
         private readonly HttpClient _httpClient;
 
-        public ApiClient(HttpClient httpClient)
+        public ApiClient(HttpClient httpClient, IConfiguration configuration)
         {
-            _httpClient = httpClient;
+            //_httpClient = httpClient;
+            //_httpClient.BaseAddress = new Uri(configuration["ApiBaseUrl"]);
         }
 
         #region Bill API Calls
