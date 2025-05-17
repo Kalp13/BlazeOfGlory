@@ -16,7 +16,11 @@ namespace WPFToBlazor
             builder.Services.AddRazorComponents()
                 .AddInteractiveWebAssemblyComponents();
 
-            builder.Services.AddScoped<IApiClient, DummyApiClient>();
+            // Register HttpClient for ApiClient
+            builder.Services.AddHttpClient<IApiClient, ApiClient.ApiClient>(client =>
+            {
+                client.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]);
+            });
 
             var app = builder.Build();
 

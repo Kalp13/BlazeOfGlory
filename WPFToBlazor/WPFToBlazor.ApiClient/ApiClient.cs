@@ -10,8 +10,8 @@ namespace WPFToBlazor.ApiClient
 
         public ApiClient(HttpClient httpClient, IConfiguration configuration)
         {
-            //_httpClient = httpClient;
-            //_httpClient.BaseAddress = new Uri(configuration["ApiBaseUrl"]);
+            _httpClient = httpClient;
+            _httpClient.BaseAddress = new Uri(configuration["ApiBaseUrl"]);
         }
 
         #region Bill API Calls
