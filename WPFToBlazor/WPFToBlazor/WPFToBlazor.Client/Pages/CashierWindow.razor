@@ -1,0 +1,332 @@
+﻿@page "/cashier"
+@rendermode InteractiveWebAssembly
+@using System.Globalization
+
+<div class="cashier-header d-flex align-items-center px-4 py-2">
+    <div class="profile-pic me-3"></div>
+    <div class="fw-bold fs-5">Cashier ID: 10</div>
+    <div class="fw-bold fs-5 ms-4">Cashier Name: Cash</div>
+</div>
+
+<div class="cashier-main p-3">
+    <div class="row g-3">
+        <!-- Left: Bill Table and Totals -->
+        <div class="col-6 d-flex flex-column" style="height: 80vh;">
+            <div class="section-title mb-2">Cashier Window</div>
+            <div class="section-outline flex-grow-1 mb-3 d-flex flex-column">
+                <table class="table table-sm mb-0 bill-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var row in BillRows)
+                        {
+                            <tr>
+                                <td>@row.RowNo</td>
+                                <td>@row.ItemName</td>
+                                <td>@row.ItemPrice</td>
+                                <td>@row.Qty</td>
+                                <td>@row.Total</td>
+                                <td>
+                                    <input class="form-control form-control-sm" @bind="row.Comment" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="section-outline mb-3 p-3">
+                <div class="row mb-2 align-items-center">
+                    <div class="col-5">Total</div>
+                    <div class="col-7"><input class="form-control form-control-sm" value="@GrandTotal.ToString("0.##")" readonly /></div>
+                </div>
+                <div class="row mb-2 align-items-center">
+                    <div class="col-5">Discount (%)</div>
+                    <div class="col-7">
+                        <input class="form-control form-control-sm"
+                               @bind="Discount"
+                               @bind:event="oninput"
+                               type="number"
+                               min="0"
+                               max="100" />
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-5">Sub Total</div>
+                    <div class="col-7"><input class="form-control form-control-sm" value="@SubTotal.ToString("0.##")" readonly /></div>
+                </div>
+            </div>
+            <div class="section-outline mb-3 p-3">
+                <div class="row mb-2 align-items-center">
+                    <div class="col-5">Total item Received</div>
+                    <div class="col-7"><input class="form-control form-control-sm" value="@TotalItems" readonly /></div>
+                </div>
+                <div class="row mb-2 align-items-center">
+                    <div class="col-5">Total Payable</div>
+                    <div class="col-7"><input class="form-control form-control-sm" value="@SubTotal.ToString("0.##")" readonly /></div>
+                </div>
+                <div class="row mb-2 align-items-center">
+                    <div class="col-5">Cash Received</div>
+                    <div class="col-7">
+                        <input class="form-control form-control-sm"
+                               @bind="CashReceived"
+                               @bind:event="oninput"
+                               type="number"
+                               min="0" />
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-5">Balance</div>
+                    <div class="col-7"><input class="form-control form-control-sm" value="@Balance.ToString("0.##")" readonly /></div>
+                </div>
+            </div>
+            <div class="d-flex gap-3 mt-auto">
+                <button class="btn btn-cancel flex-fill" @onclick="Cancel">
+                    <i class="bi bi-x-circle me-2"></i>Cancel
+                </button>
+                <button class="btn btn-pay flex-fill" @onclick="Pay" disabled="@(!BillRows.Any())">
+                    <i class="bi bi-currency-dollar me-2"></i>Pay
+                </button>
+                <button class="btn btn-print flex-fill" @onclick="PrintBill" disabled="@(!BillRows.Any())">
+                    <i class="bi bi-printer me-2"></i>Print Bill
+                </button>
+            </div>
+        </div>
+
+        <!-- Right: Categories and Products -->
+        <div class="col-6 d-flex flex-column" style="height: 80vh;">
+            <div class="row g-3 flex-grow-1">
+                <div class="col-5 d-flex flex-column">
+                    <div class="section-title mb-2">Categories</div>
+                    <div class="section-outline flex-grow-1 d-flex flex-column align-items-center justify-content-start py-4">
+                        @foreach (var cat in Categories)
+                        {
+                            <button class="btn btn-purple w-100 mb-2" @onclick="() => SelectCategory(cat)">@cat</button>
+                        }
+                    </div>
+                </div>
+                <div class="col-7 d-flex flex-column">
+                    <div class="section-title mb-2">Products List</div>
+                    <div class="section-outline flex-grow-1 d-flex flex-wrap align-items-start p-2">
+                        @foreach (var prod in Products)
+                        {
+                            <div class="product-card m-2" @onclick="() => AddProduct(prod)">
+                                <div class="product-price">@prod.Price</div>
+                                <div class="product-name">@prod.Name</div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-3">
+                <button class="btn btn-purple logout-btn" @onclick="Logout">
+                    <i class="bi bi-box-arrow-right me-2"></i>LogOut
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    public class BillRow
+    {
+        public int RowNo { get; set; }
+        public string ItemName { get; set; } = "";
+        public decimal ItemPrice { get; set; }
+        public int Qty { get; set; } = 1;
+        public decimal Total => ItemPrice * Qty;
+        public string? Comment { get; set; }
+    }
+    public class Product
+    {
+        public string Name { get; set; } = "";
+        public decimal Price { get; set; }
+    }
+
+    private List<BillRow> BillRows = new();
+    private List<string> Categories = new() { "Biscuits", "Soft Drinks", "abc" };
+    private List<Product> Products = new()
+    {
+        new Product { Name = "Bourbon", Price = 170 },
+        new Product { Name = "Munchee Chocolate Cream 1000g", Price = 140 },
+        new Product { Name = "Nice Biscuits 100g", Price = 130 },
+        new Product { Name = "Cheese Cracker", Price = 170 },
+        new Product { Name = "Chocolate Creaam 100g", Price = 180 }
+    };
+
+    // State
+    private decimal Discount { get; set; }
+    private decimal CashReceived { get; set; }
+
+    private decimal GrandTotal => BillRows.Sum(x => x.Total);
+    private decimal SubTotal => GrandTotal - (GrandTotal * (Discount / 100m));
+    private int TotalItems => BillRows.Sum(x => x.Qty);
+    private decimal Balance => CashReceived - SubTotal;
+
+    private void AddProduct(Product prod)
+    {
+        var existing = BillRows.FirstOrDefault(x => x.ItemName == prod.Name);
+        if (existing != null)
+            existing.Qty++;
+        else
+            BillRows.Add(new BillRow { RowNo = BillRows.Count + 1, ItemName = prod.Name, ItemPrice = prod.Price });
+    }
+    private void IncrementQty(BillRow row) { row.Qty++; }
+    private void DecrementQty(BillRow row) { if (row.Qty > 1) row.Qty--; }
+    private void DeleteRow(BillRow row) => BillRows.Remove(row);
+    private void SelectCategory(string cat) { /* TODO: Filter products by category */ }
+    private void Cancel() { BillRows.Clear(); Discount = 0; CashReceived = 0; }
+    private void Pay() { /* TODO: Payment logic */ }
+    private void PrintBill() { /* TODO: Print logic */ }
+    private void Logout() { /* TODO: Logout logic */ }
+}
+
+
+<style>
+    .cashier-header {
+        background: #4b2354;
+        border-radius: 30px 30px 0 30px;
+        min-height: 60px;
+        color: #fff;
+        border-bottom: 3px solid #ccc;
+    }
+
+    .profile-pic {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #fff;
+        background-image: url('/img/food.png');
+        background-size: cover;
+        border: 2px solid #DA34AE;
+    }
+
+    .window-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 12px;
+        border: none;
+        margin-left: 5px;
+    }
+
+        .window-btn.minimize {
+            background: #28AEED;
+        }
+
+        .window-btn.resize {
+            background: green;
+            color: #fff;
+        }
+
+        .window-btn.close {
+            background: #DA34AE;
+            color: #fff;
+        }
+
+        .window-btn:hover {
+            filter: brightness(1.2);
+        }
+
+    .cashier-main {
+        background: #fff;
+        min-height: 80vh;
+        color: #222;
+        border-radius: 0 0 30px 30px;
+    }
+
+    .section-title {
+        border: 2px solid #8A16C1;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #4b2354;
+        background: #fff;
+        margin-bottom: 0.5rem;
+    }
+
+    .section-outline {
+        border: 2px solid #8A16C1;
+        border-radius: 15px;
+        background: #fff;
+    }
+
+    .bill-table thead tr {
+        background: #8A16C1;
+        color: #fff;
+    }
+
+    .bill-table th, .bill-table td {
+        border: none;
+        background: transparent;
+    }
+
+    .btn-purple {
+        background-color: #a020f0;
+        color: #fff;
+        border-radius: 8px;
+    }
+
+        .btn-purple:hover {
+            background-color: #8a16c1;
+            color: #fff;
+        }
+
+    .btn-cancel {
+        background: #7c174a;
+        color: #fff;
+        border-radius: 8px;
+    }
+
+    .btn-pay, .btn-print {
+        background: #1bbf3a;
+        color: #fff;
+        border-radius: 8px;
+    }
+
+        .btn-pay:disabled, .btn-print:disabled {
+            background: #aaa;
+        }
+
+    .product-card {
+        width: 120px;
+        height: 120px;
+        border: 2px solid #8A16C1;
+        border-radius: 10px;
+        background: #fff;
+        color: #222;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 6px rgba(138,22,193,0.08);
+    }
+
+        .product-card:hover {
+            border-color: #a020f0;
+        }
+
+    .product-price {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #1bbf3a;
+    }
+
+    .product-name {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .logout-btn {
+        min-width: 150px;
+    }
+</style>
