@@ -1,0 +1,130 @@
+﻿@page "/billprint"
+@using System.Globalization
+
+@* Optionally accept a parameter for the bill, or fetch it from a service *@
+@code {
+    [Parameter]
+    public BillModel? Bill { get; set; }
+
+    // For demo/testing, use sample data if not provided
+    protected override void OnInitialized()
+    {
+        if (Bill == null)
+        {
+            Bill = new BillModel
+                {
+                    BillNo = 1234,
+                    Date = DateTime.Now,
+                    CashierName = "Cash",
+                    Items = new List<BillItem>
+                {
+                    new BillItem { Name = "Bourbon", Price = 170, Qty = 2 },
+                    new BillItem { Name = "Cheese Cracker", Price = 170, Qty = 1 }
+                },
+                    DiscountPercent = 10,
+                    CashReceived = 500
+                };
+        }
+    }
+
+    public class BillModel
+    {
+        public int BillNo { get; set; }
+        public DateTime Date { get; set; }
+        public string CashierName { get; set; } = "";
+        public List<BillItem> Items { get; set; } = new();
+        public decimal DiscountPercent { get; set; }
+        public decimal CashReceived { get; set; }
+        public decimal GrandTotal => Items.Sum(i => i.Total);
+        public decimal DiscountAmount => GrandTotal * (DiscountPercent / 100m);
+        public decimal SubTotal => GrandTotal - DiscountAmount;
+        public decimal Balance => CashReceived - SubTotal;
+    }
+
+    public class BillItem
+    {
+        public string Name { get; set; } = "";
+        public decimal Price { get; set; }
+        public int Qty { get; set; }
+        public decimal Total => Price * Qty;
+    }
+}
+
+<div class="bill-print-container">
+    <div class="bill-header text-center">
+        <h4>Batakade POS</h4>
+        <div>Bill No: @Bill.BillNo</div>
+        <div>Date: @Bill.Date.ToString("yyyy-MM-dd HH:mm")</div>
+        <div>Cashier: @Bill.CashierName</div>
+    </div>
+    <hr />
+    <table class="table table-sm bill-table mb-2">
+        <thead>
+            <tr>
+                <th style="width:40%;">Item</th>
+                <th style="width:20%;">Price</th>
+                <th style="width:20%;">Qty</th>
+                <th style="width:20%;">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Bill.Items)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price.ToString("0.##")</td>
+                    <td>@item.Qty</td>
+                    <td>@item.Total.ToString("0.##")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+    <div class="bill-summary">
+        <div class="d-flex justify-content-between"><span>Grand Total:</span><span>@Bill.GrandTotal.ToString("0.##")</span></div>
+        <div class="d-flex justify-content-between"><span>Discount (@Bill.DiscountPercent)%:</span><span>@Bill.DiscountAmount.ToString("0.##")</span></div>
+        <div class="d-flex justify-content-between"><span>Sub Total:</span><span>@Bill.SubTotal.ToString("0.##")</span></div>
+        <div class="d-flex justify-content-between"><span>Cash Received:</span><span>@Bill.CashReceived.ToString("0.##")</span></div>
+        <div class="d-flex justify-content-between"><span>Balance:</span><span>@Bill.Balance.ToString("0.##")</span></div>
+    </div>
+    <hr />
+    <div class="text-center mt-2">Thank you for your purchase!</div>
+    <div class="text-center mt-2">
+        <button class="btn btn-primary btn-sm d-print-none" @onclick="Print">Print</button>
+    </div>
+</div>
+
+@code {
+    private void Print()
+    {
+        JS.InvokeVoidAsync("window.print");
+    }
+
+    [Inject]
+    private IJSRuntime JS { get; set; } = default!;
+}
+
+<style>
+    .bill-print-container {
+        max-width: 320px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        font-size: 0.95rem;
+    }
+
+    .bill-header h4 {
+        margin-bottom: 0.5rem;
+    }
+
+    .bill-table th, .bill-table td {
+        padding: 0.25rem 0.5rem;
+    }
+
+    .bill-summary > div {
+        margin-bottom: 0.25rem;
+    }
+}
+</style>
