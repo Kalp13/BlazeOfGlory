@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\EtienneduToit\\source\\repos\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\WPFToBlazor.bundle.scp.css",
+      "PackagePath": "staticwebassets\\WPFToBlazor.wosyo10w1y.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\EtienneduToit\\source\\repos\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\EtienneduToit\\source\\repos\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\EtienneduToit\\source\\repos\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\EtienneduToit\\source\\repos\\WPFToBlazor\\WPFToBlazor\\WPFToBlazor\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.WPFToBlazor.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.WPFToBlazor.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.WPFToBlazor.props",
+      "PackagePath": "build\\WPFToBlazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.WPFToBlazor.props",
+      "PackagePath": "buildMultiTargeting\\WPFToBlazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.WPFToBlazor.props",
+      "PackagePath": "buildTransitive\\WPFToBlazor.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

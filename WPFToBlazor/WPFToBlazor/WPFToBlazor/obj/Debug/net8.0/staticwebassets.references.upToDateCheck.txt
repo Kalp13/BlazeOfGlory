@@ -1,0 +1,1 @@
+C:\Users\EtienneduToit\source\repos\WPFToBlazor\WPFToBlazor\WPFToBlazor.Client\obj\Debug\net8.0\staticwebassets.build.json

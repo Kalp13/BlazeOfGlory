@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFToBlazor", "WPFToBlazor\WPFToBlazor\WPFToBlazor.csproj", "{50335E94-63C5-4238-9291-DF12F7BB3C40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFToBlazor.Client", "WPFToBlazor\WPFToBlazor.Client\WPFToBlazor.Client.csproj", "{44CC438E-2219-47F5-A87F-67503172CCBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50335E94-63C5-4238-9291-DF12F7BB3C40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50335E94-63C5-4238-9291-DF12F7BB3C40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50335E94-63C5-4238-9291-DF12F7BB3C40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50335E94-63C5-4238-9291-DF12F7BB3C40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44CC438E-2219-47F5-A87F-67503172CCBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44CC438E-2219-47F5-A87F-67503172CCBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44CC438E-2219-47F5-A87F-67503172CCBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44CC438E-2219-47F5-A87F-67503172CCBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {037441C5-C1CA-4D1A-94CB-BD5C00F67BFB}
+	EndGlobalSection
+EndGlobal
