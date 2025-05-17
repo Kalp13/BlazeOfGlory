@@ -1,0 +1,101 @@
+﻿@page "/addedititem"
+@using Microsoft.AspNetCore.Components.Forms
+
+
+<div class="container-fluid py-3">
+    <!-- Control Bar -->
+    <div class="d-flex justify-content-end mb-2">
+        <button class="btn btn-light btn-sm mx-1" title="Minimize"><i class="fa fa-window-minimize"></i></button>
+        <button class="btn btn-light btn-sm mx-1" title="Resize"><i class="fa fa-window-maximize"></i></button>
+        <button class="btn btn-light btn-sm mx-1" title="Close"><i class="fa fa-times"></i></button>
+    </div>
+
+    <!-- Clock -->
+    <div class="text-center text-secondary mb-2" style="font-size: 1.1rem;">@DateTime.Now.ToString("hh:mm:ss tt")</div>
+
+    <div class="row justify-content-center align-items-center" style="min-height: 350px;">
+        <!-- Image Section -->
+        <div class="col-12 col-md-4 text-center mb-3 mb-md-0">
+            <div class="border rounded-3 p-3 bg-white" style="min-height:220px;">
+                @if (imageDataUrl is not null)
+                {
+                    <img src="@imageDataUrl" alt="Item Photo" style="max-width: 180px; max-height: 180px;" />
+                }
+                else
+                {
+                    <img src="img/camera_logo.jpg" alt="Camera Logo" style="max-width: 180px; max-height: 180px; opacity:0.5;" />
+                }
+            </div>
+        </div>
+
+        <!-- Fields Section -->
+        <div class="col-12 col-md-6">
+            <div class="row mb-3">
+                <div class="col-4 d-flex flex-column justify-content-center">
+                    <label class="fw-bold mb-3">Item Name</label>
+                    <label class="fw-bold mb-3">Item Price</label>
+                    <label class="fw-bold">Item Category</label>
+                </div>
+                <div class="col-8">
+                    <InputText class="form-control mb-3" @bind-Value="itemName" placeholder="Enter item name" />
+                    <InputNumber class="form-control mb-3" @bind-Value="itemPrice" placeholder="Enter price" />
+                    <InputText class="form-control" @bind-Value="itemCategory" placeholder="Enter category" />
+                </div>
+            </div>
+            <div class="border rounded-3 p-3 mt-4" style="background:rgba(255,255,255,0.7);">
+                <div class="d-grid gap-2 mb-2">
+                    <InputFile OnChange="OnInputFileChange" accept="image/*" class="d-none" @ref="fileInput" />
+                    <button class="btn btn-purple d-flex align-items-center justify-content-center" @onclick="TriggerFileInput">
+                        <i class="fa fa-upload me-2"></i> Upload Photo
+                    </button>
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-purple d-flex align-items-center justify-content-center" @onclick="SaveItem">
+                        <i class="fa fa-save me-2"></i> Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-purple {
+        background-color: #a020f0;
+        color: #fff;
+    }
+
+        .btn-purple:hover {
+            background-color: #8a16c1;
+            color: #fff;
+        }
+</style>
+
+@code {
+    private string? itemName;
+    private decimal itemPrice;
+    private string? itemCategory;
+    private string? imageDataUrl;
+    private InputFile? fileInput;
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file is not null)
+        {
+            var buffer = new byte[file.Size];
+            await file.OpenReadStream().ReadAsync(buffer);
+            imageDataUrl = $"data:{file.ContentType};base64,{Convert.ToBase64String(buffer)}";
+        }
+    }
+
+    private void TriggerFileInput()
+    {
+        // fileInput?.Element.ClickAsync();
+    }
+
+    private void SaveItem()
+    {
+        // TODO: Save logic here (e.g., send to API or update parent component)
+    }
+}
