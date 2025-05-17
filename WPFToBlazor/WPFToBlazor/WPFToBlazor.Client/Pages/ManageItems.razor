@@ -1,5 +1,6 @@
 ﻿@page "/manageitems"
 @rendermode InteractiveWebAssembly
+@inject NavigationManager Navigation
 
 @code {
     // Sample data models
@@ -37,8 +38,25 @@
         // TODO: Filter products by category
     }
 
-    private void AddItem() { /* TODO: Add logic */ }
-    private void EditItem() { /* TODO: Edit logic */ }
+    private void OnProductClick(Product prod)
+    {
+        selectedProduct = prod;
+    }
+
+    private void AddItem()
+    {
+        Navigation.NavigateTo("/addedititem");
+    }
+
+    private void EditItem()
+    {
+        if (selectedProduct is not null)
+        {
+            // Pass product name as a query string (or use an ID if available)
+            Navigation.NavigateTo($"/addedititem?name={Uri.EscapeDataString(selectedProduct.ItemName)}");
+        }
+    }
+
     private void DeleteItem() { /* TODO: Delete logic */ }
 }
 
@@ -74,7 +92,7 @@
             </div>
             <div class="d-grid gap-2">
                 <button class="btn btn-purple" @onclick="AddItem">Add</button>
-                <button class="btn btn-purple" @onclick="EditItem">Edit</button>
+                <button class="btn btn-purple" @onclick="EditItem" disabled="@(!CanEdit)">Edit</button>
                 <button class="btn btn-purple" @onclick="DeleteItem">Delete</button>
             </div>
         </div>
@@ -85,7 +103,9 @@
                 <div class="d-flex flex-wrap">
                     @foreach (var prod in Products)
                     {
-                        <div class="card m-2" style="width: 120px; border: 2px solid #fff; border-radius: 10px;">
+                        <div class="card m-2 @(selectedProduct == prod ? "border-primary" : "")"
+                             style="width: 120px; border: 2px solid #fff; border-radius: 10px; cursor:pointer;"
+                             @onclick="() => OnProductClick(prod)">
                             <img src="@prod.ItemPhoto" class="card-img-top" style="height: 100px; object-fit: cover; border-radius: 5px;" />
                             <div class="card-body p-2">
                                 <div class="fw-bold" style="font-size: 13px;">@prod.ItemName</div>
@@ -99,6 +119,10 @@
     </div>
 </div>
 
+@code {
+    private bool CanEdit => selectedProduct is not null;
+}
+
 <style>
     .btn-purple {
         background-color: #a020f0;
@@ -109,4 +133,8 @@
             background-color: #8a16c1;
             color: #fff;
         }
+
+    .border-primary {
+        border: 2px solid #007bff !important;
+    }
 </style>
