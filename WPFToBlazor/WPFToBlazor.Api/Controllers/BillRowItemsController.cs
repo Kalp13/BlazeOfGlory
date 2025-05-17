@@ -13,7 +13,7 @@ namespace WPFToBlazor.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+   
     public class BillRowItemsController : ControllerBase
     {
         private readonly DatabaseContext _context;
