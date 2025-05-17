@@ -26,6 +26,15 @@ namespace WPFToBlazor
                 client.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]);
             });
 
+            builder.Services.AddDistributedMemoryCache();
+
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);  //you can change the session expired time.  
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             var app = builder.Build();
 
             app.MapDefaultEndpoints();
@@ -46,6 +55,8 @@ namespace WPFToBlazor
 
             app.UseStaticFiles();
             app.UseAntiforgery();
+
+            app.UseSession();
 
             app.MapRazorComponents<App>()
                 .AddInteractiveWebAssemblyRenderMode()

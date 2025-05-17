@@ -21,5 +21,13 @@ else
 }
 
 @code {
-    private user = ProtectedSessionStore.GetAsync<User>("user").Result.Value;
+
+    [CascadingParameter] HttpContext? httpContext { get; set; }
+
+    private string? user { get; set; }
+
+    protected override void OnInitialized()
+    {
+        user = httpContext.Session.GetString("user");
+    }
 }

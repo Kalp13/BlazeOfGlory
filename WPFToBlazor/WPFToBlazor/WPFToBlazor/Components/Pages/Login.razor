@@ -1,12 +1,9 @@
 ﻿@page "/login"
-@rendermode InteractiveWebAssembly
-@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
-@inject ProtectedSessionStorage ProtectedSessionStore
-@inject HttpClient Http
-@inject ApiClient.IApiClient ApiClient
-@inject NavigationManager Navigation
+
 @using System.ComponentModel.DataAnnotations
 @using ApiClient.Models
+@inject ApiClient.IApiClient ApiClient
+@inject NavigationManager Navigation
 
 <PageTitle>Login</PageTitle>
 
@@ -56,6 +53,8 @@
     [SupplyParameterFromForm]
     private LoginRequest? Model { get; set; }
 
+    [CascadingParameter] HttpContext? httpContext { get; set; }
+
     protected override void OnInitialized() => Model ??= new();
 
     private async Task HandleLoginAsync()
@@ -74,14 +73,15 @@
         }
         else if (string.IsNullOrWhiteSpace(response))
         {
-            await ProtectedSessionStore.SetAsync("token", response);
-            await ProtectedSessionStore.SetAsync("username", Model.Username);
+            httpContext.Session.SetString("token", response);
+            httpContext.Session.SetString("username", Model.Username);
+            StateHasChanged();
+
+            Navigation.NavigateTo("/", true);
         }
         else
         {
             errorMessage = "Login failed. Please try again.";
         }
-
-        Navigation.NavigateTo("/", true);
     }
 }
