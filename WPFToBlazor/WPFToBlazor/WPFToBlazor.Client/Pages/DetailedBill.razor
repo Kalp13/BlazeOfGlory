@@ -1,0 +1,106 @@
+﻿@page "/detailedbill/{BillId:int}"
+@rendermode InteractiveWebAssembly
+
+<PageTitle>Detailed Bill</PageTitle>
+
+@* <div class="detailed-bill-bg rounded-4 p-4 position-relative" style="min-height:450px; background: linear-gradient(135deg, #5c0303 0%, #1B1448 100%);"> *@
+<div class="detailed-bill-bg rounded-4 p-4 position-relative bg-white" style="min-height:450px;">
+
+    <!-- Control Bar -->
+    <div class="position-absolute end-0 top-0 mt-2 me-3" style="z-index:2;">
+        <button class="btn btn-info btn-sm me-2" @onclick="Minimize">-</button>
+        <button class="btn btn-success btn-sm me-2" @onclick="Resize">&#8962;</button>
+        <button class="btn btn-danger btn-sm" @onclick="Close">X</button>
+    </div>
+
+    <!-- Optional: Background image overlay -->
+    @* <div class="detailed-bill-img-bg"></div> *@
+
+    <div class="container-fluid position-relative" style="z-index:1;">
+        <h2 class="text-white mb-4">Detailed Bill</h2>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered table-sm bg-white">
+                    <thead class="table-light">
+                        <tr>
+                            <th>RowNo</th>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var row in BillRowItems)
+                        {
+                            <tr>
+                                <td>@row.RowNo</td>
+                                <td>@row.Item.ItemId</td>
+                                <td>@row.Item.ItemName</td>
+                                <td>@row.Item.ItemPrice</td>
+                                <td>@row.Qty</td>
+                                <td>@row.Total</td>
+                                <td>@row.Comment</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12 col-md-6 mt-4">
+                <div class="text-white fs-5">
+                    <div class="d-flex justify-content-between"><span>Total</span><span>@GrandTotal</span></div>
+                    <div class="d-flex justify-content-between"><span>Discount</span><span>@Disc</span></div>
+                    <div class="d-flex justify-content-between"><span>Sub Total</span><span>@SubTotal</span></div>
+                    <div class="d-flex justify-content-between"><span>Total items</span><span>@TotalItems</span></div>
+                    <div class="d-flex justify-content-between"><span>Total Payable</span><span>@SubTotal</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int BillId { get; set; }
+
+    // Data models
+    public class BillRowItem
+    {
+        public int RowNo { get; set; }
+        public BillItem Item { get; set; } = new();
+        public int Qty { get; set; }
+        public decimal Total { get; set; }
+        public string? Comment { get; set; }
+    }
+    public class BillItem
+    {
+        public int ItemId { get; set; }
+        public string ItemName { get; set; } = "";
+        public decimal ItemPrice { get; set; }
+    }
+
+    // Sample data
+    private List<BillRowItem> BillRowItems = new()
+    {
+        new BillRowItem
+        {
+            RowNo = 2,
+            Item = new BillItem { ItemId = 1, ItemName = "Chicken Kottu", ItemPrice = 10 },
+            Qty = 3,
+            Total = 30,
+            Comment = "Add comment"
+        }
+    };
+
+    private decimal GrandTotal => BillRowItems.Sum(x => x.Total);
+    private decimal Disc => 10; // Example
+    private decimal SubTotal => GrandTotal - Disc;
+    private int TotalItems => BillRowItems.Sum(x => x.Qty);
+
+    // Control bar actions (implement as needed)
+    private void Minimize() { /* Add minimize logic */ }
+    private void Resize() { /* Add resize logic */ }
+    private void Close() { /* Add close logic */ }
+}
