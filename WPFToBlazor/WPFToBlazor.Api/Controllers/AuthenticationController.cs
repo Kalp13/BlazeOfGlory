@@ -26,7 +26,7 @@ namespace WPFToBlazor.Api.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
         {
-            var user = _context.Users.FirstOrDefault(u => u. == request.Username && u.Password == request.Password);
+            var user = _context.Users.FirstOrDefault(u => u.Username == request.Username && u.Password == request.Password);
             if (user == null)
                 return Unauthorized();
 
@@ -39,7 +39,7 @@ namespace WPFToBlazor.Api.Controllers
             var claims = new[]
             {
                 new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString())
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
